@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Library Card Registration</title>
+<style>
+    body {
+        display: flex;
+        justify-content: center;
+        align-items: flex-start;
+        height: 100vh;
+        margin: 0;
+        padding: 20px;
+        box-sizing: border-box;
+    }
+    h2 {
+        text-align: center;
+        margin-top: 0;
+    }
+    form {
+        width: 300px;
+        margin-top: 20px;
+    }
+    label {
+        display: block;
+        margin-bottom: 5px;
+    }
+    input[type="text"], input[type="email"], input[type="number"], select {
+        width: calc(100% - 16px);
+        padding: 6px;
+        margin-bottom: 8px;
+    }
+    #error-message {
+        color: red;
+        font-weight: bold;
+        margin-top: 10px;
+        text-align: center;
+    }
+    button {
+        padding: 10px;
+        margin-top: 10px;
+    }
+</style>
+<script type="text/javascript">
+    function formValidator() {
+        var name = document.getElementById('name');
+        var address = document.getElementById('address');
+        var rollno = document.getElementById('rollno');
+        var branch = document.getElementById('branch');
+        var section = document.getElementById('section');
+        var year = document.getElementById('year');
+        var phone = document.getElementById('phone');
+        var email = document.getElementById('email');
+        
+        if (Name(name, "Please enter only letters for your name")) {
+            if (Address(address, "Numbers and Letters Only for Address")) {
+                if (Rollno(rollno, "Please enter only numbers for roll number")) {
+                    if (BranchName(branch, "Please Choose a branch")) {
+                        if (Section(section, "Please enter numbers for section")) {
+                            if (Year(year, "Please enter your current year")) {
+                                if (PhoneNo(phone, "Please enter a valid phone number")) {
+                                    if (Email(email, "Please enter a valid email address")) {
+                                        return true;
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        return false;
+    }
+    
+    function Name(elem, helperMsg) {
+        var nameExp = /^[a-zA-Z\s]+$/;
+        if ((elem.value.length != 0) && (elem.value.match(nameExp))) {
+            return true;
+        } else {
+            alert(helperMsg);
+            elem.focus();
+            return false;
+        }        
+    }
+    
+    function Address(elem, helperMsg) {
+        var alphaExp = /^[0-9a-zA-Z\s]+$/;
+        if ((elem.value.match(alphaExp)) && (elem.value.length != 0)) {
+            return true;
+        } else {
+            alert(helperMsg);
+            elem.focus();
+            return false;
+        }
+    }
+    
+    function Rollno(elem, helperMsg) {
+        var numericExp = /^[0-9]+$/;
+        if ((elem.value.match(numericExp)) && (elem.value.length != 0)) {
+            return true;
+        } else {
+            alert(helperMsg);
+            elem.focus();
+            return false;
+        }
+    }
+    
+    function BranchName(elem, helperMsg) {
+        if (elem.value != "") {
+            return true;
+        } else {
+            alert(helperMsg);
+            elem.focus();
+            return false;
+        }
+    }
+    
+    function Section(elem, helperMsg) {
+        var numericExp = /^[0-9]+$/;
+        if ((elem.value.match(numericExp)) && (elem.value.length != 0)) {
+            return true;
+        } else {
+            alert(helperMsg);
+            elem.focus();
+            return false;
+        }
+    }
+    
+    function Year(elem, helperMsg) {
+        var numericExp = /^[0-9]+$/;
+        if ((elem.value.match(numericExp)) && (elem.value.length != 0)) {
+            return true;
+        } else {
+            alert(helperMsg);
+            elem.focus();
+            return false;
+        }
+    }
+    
+    function PhoneNo(elem, helperMsg) {
+        var numericExp = /^[0-9]+$/;
+        if ((elem.value.match(numericExp)) && (elem.value.length != 0)) {
+            return true;
+        } else {
+            alert(helperMsg);
+            elem.focus();
+            return false;
+        }
+    }
+    
+    function Email(elem, helperMsg) {
+        var emailExp = /^[\w\-\.\+]+\@[a-zA-Z0-9\.\-]+\.[a-zA-Z]{2,4}$/;
+        if ((elem.value.match(emailExp)) && (elem.value.length != 0)) {
+            return true;
+        } else {
+            alert(helperMsg);
+            elem.focus();
+            return false;
+        }
+    }
+</script>
+</head>
+<body>
+<h2>Library Card Registration</h2>
+<form id="registration-form" onsubmit="return formValidator()">
+    <label for="name">Name:</label>
+    <input type="text" id="name" name="name" required>
+    
+    <label for="address">Address:</label>
+    <input type="text" id="address" name="address" required>
+
+    <label for="rollno">Roll Number:</label>
+    <input type="text" id="rollno" name="rollno" required>
+
+    <label for="branch">Branch:</label>
+    <select id="branch" name="branch" required>
+        <option value="">Select Branch</option>
+        <option value="CSE">Computer Science and Engineering</option>
+        <option value="ECE">Electronics and Communication Engineering</option>
+        <option value="ME">Mechanical Engineering</option>
+        <option value="CE">Civil Engineering</option>
+        <!-- Add more options if needed -->
+    </select>
+
+    <label for="section">Section:</label>
+    <input type="text" id="section" name="section" required>
+    
+    <label for="year">Current Year:</label>
+    <input type="text" id="year" name="year" required>
+
+    <label for="phone">Phone Number:</label>
+    <input type="text" id="phone" name="phone" required>
+
+    <label for="email">Email:</label>
+    <input type="email" id="email" name="email" required>
+    
+    <button type="submit">Register</button>
+</form>
+<div id="error-message"></div>
+</body>
+</html>
